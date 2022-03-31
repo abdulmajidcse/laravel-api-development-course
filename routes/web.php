@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoryController;
 use App\Models\Category;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// api test
+Route::get('api-test', function() {
+
+    // $request = Http::withHeaders([
+    //     'Authorization' => 'Bearer 2|yO5cHFnfUlpDixRcRlkvWO5QeoxMRd4PtGkpCCPP',
+    // ])->get('http://laravel-api.test/api/user');
+    // $user = $request->object();
+
+    // return $user->data->user->name;
+
+
+    $request = Http::post('http://laravel-api.test/api/login', [
+        'email' => 'amdadul@gmail.com',
+        'password' => '12345678',
+    ]);
+
+    return $request->object();
 });
 
 
